@@ -1,0 +1,11 @@
+<main>
+  <ul>
+    <% @memos.each do |id, memo|%>
+      <li>
+        <a>
+          <%= memo["title"]%>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</main>
