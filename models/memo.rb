@@ -4,6 +4,6 @@ FILE_PATH = 'public/data.json'
 
 class Memo
   def all
-    File.open(FILE_PATH) { |file| JSON.parse(file.read) }
+    JSON.parse(File.read(FILE_PATH))
   end
 end
