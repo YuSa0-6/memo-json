@@ -1,6 +1,6 @@
 <main>
-  <h1><%= @title %></h1>
-  <div><%= @content  %></div>
+  <h1><%= CGI.escapeHTML(@title) %></h1>
+  <div><%= CGI.escapeHTML(@content)  %></div>
   <div>
     <form action="/memos/<%= params[:id] %>/edit" method="get">
       <input type="submit" value="Edit" />

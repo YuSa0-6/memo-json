@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'json'
+require 'cgi'
 require_relative 'models/memo'
 
 get '/' do
