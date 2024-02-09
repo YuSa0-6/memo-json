@@ -1,8 +1,13 @@
 <main>
   <h1>
-    <%= @memo_title %>
+    <%= @title %>
   </h1>
   <div>
-    <%= @memo_content  %>
+    <%= @content  %>
+  </div>
+  <div>
+    <form action="/memos/<%= params[:id] %>/edit" method="get">
+      <input type="submit" value="Edit" />
+    </form>
   </div>
 </main>

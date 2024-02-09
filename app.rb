@@ -20,8 +20,8 @@ end
 
 get '/memos/:id' do
   memos = Memo.new.all
-  @memo_title = memos[params[:id].to_s]['title']
-  @memo_content = memos[params[:id].to_s]['content']
+  @title = memos[params[:id]]['title']
+  @content = memos[params[:id]]['content']
   @page_title = 'Show page'
   erb :show
 end
@@ -37,3 +37,24 @@ post '/memos' do
 
   redirect '/memos'
 end
+
+get '/memos/:id/edit' do
+  memos = Memo.new.all
+  @title = memos[params[:id]]['title']
+  @content = memos[params[:id]]['content']
+  @page_title = 'Edit page'
+  erb :edit
+end
+
+patch '/memos/:id' do
+  title = params[:title]
+  content = params[:content]
+
+  memos = Memo.new.all
+  memos[params[:id]] = { 'title' => title, 'content' => content }
+  Memo.new.create(memos)
+
+  redirect "/memos/#{params[:id]}"
+end
+
+
