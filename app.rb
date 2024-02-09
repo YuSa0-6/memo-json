@@ -57,4 +57,12 @@ patch '/memos/:id' do
   redirect "/memos/#{params[:id]}"
 end
 
+delete '/memos/:id' do
+  memos = Memo.new.all
+  memos.delete(params[:id])
+  Memo.new.create(memos)
+
+  redirect '/memos'
+end
+
 
