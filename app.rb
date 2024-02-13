@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'json'
@@ -9,7 +11,7 @@ get '/' do
 end
 
 get '/memos' do
-  @memos = Memo.new.all
+  @memos = all
   @page_title = 'Top page'
   erb :top
 end
@@ -20,7 +22,7 @@ get '/memos/new' do
 end
 
 get '/memos/:id' do
-  memos = Memo.new.all
+  memos = all
   @title = memos[params[:id]]['title']
   @content = memos[params[:id]]['content']
   @page_title = 'Show page'
@@ -31,16 +33,16 @@ post '/memos' do
   title = params[:title]
   content = params[:content]
 
-  memos = Memo.new.all
+  memos = all
   id = (memos.keys.map(&:to_i).max + 1).to_s
   memos[id] = { 'title' => title, 'content' => content }
-  Memo.new.create(memos)
+  create(memos)
 
   redirect '/memos'
 end
 
 get '/memos/:id/edit' do
-  memos = Memo.new.all
+  memos = all
   @title = memos[params[:id]]['title']
   @content = memos[params[:id]]['content']
   @page_title = 'Edit page'
@@ -51,19 +53,17 @@ patch '/memos/:id' do
   title = params[:title]
   content = params[:content]
 
-  memos = Memo.new.all
+  memos = all
   memos[params[:id]] = { 'title' => title, 'content' => content }
-  Memo.new.create(memos)
+  create(memos)
 
   redirect "/memos/#{params[:id]}"
 end
 
 delete '/memos/:id' do
-  memos = Memo.new.all
+  memos = all
   memos.delete(params[:id])
-  Memo.new.create(memos)
+  create(memos)
 
   redirect '/memos'
 end
-
-
