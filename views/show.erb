@@ -1,9 +1,9 @@
 <main>
   <h1><%= CGI.escapeHTML(@title) %></h1>
-  <div><%= CGI.escapeHTML(@content).gsub(/\R/, "<br>")  %></div>
+  <div><%= CGI.escapeHTML(@content).gsub(/\R/, "<br>") %></div>
   <div>
     <form action="/memos/<%= params[:id] %>/edit" method="get">
-      <input type="submit" value="Edit" />
+      <input type="submit" value="Edit">
     </form>
     <form action="/memos/<%= params[:id] %>" method="post">
       <input type="hidden" name="_method" value="delete">
